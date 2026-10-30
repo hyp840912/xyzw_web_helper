@@ -1,8 +1,8 @@
 name: Auto Sync Fork
 on:
   schedule:
-    - cron: '0 0 * * *' # 每天 UTC 0点（北京时间早上 8点）自动运行
-  workflow_dispatch: # 允许你在 Actions 页面手动点击运行
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   sync:
@@ -20,6 +20,7 @@ jobs:
       - name: Sync with upstream
         uses: aormsby/fork-sync-with-upstream-action@v3.4.3
         with:
-          upstream_repository: w1249178256/xyzw_web_helper
-          upstream_branch: main
-          target_branch: main
+          upstream_sync_repo: w1249178256/xyzw_web_helper
+          upstream_sync_branch: main
+          target_sync_branch: main
+          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
